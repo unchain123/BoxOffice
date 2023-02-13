@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F3C4276299A2CCD00EB8CC8 /* boxOfficeSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F3C4275299A2CCD00EB8CC8 /* boxOfficeSample.json */; };
+		8F3C4279299A2CEE00EB8CC8 /* BoxOfficeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3C4278299A2CEE00EB8CC8 /* BoxOfficeResult.swift */; };
+		8F3C4281299A717500EB8CC8 /* BoxOfficeResultParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3C4280299A717500EB8CC8 /* BoxOfficeResultParsingTests.swift */; };
 		8FAC904F29963FF200DEC80C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAC904E29963FF200DEC80C /* AppDelegate.swift */; };
 		8FAC905129963FF200DEC80C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAC905029963FF200DEC80C /* SceneDelegate.swift */; };
 		8FAC905329963FF200DEC80C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAC905229963FF200DEC80C /* ViewController.swift */; };
@@ -14,7 +17,21 @@
 		8FAC905B29963FF300DEC80C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FAC905929963FF300DEC80C /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8F3C4282299A717500EB8CC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FAC904329963FF200DEC80C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FAC904A29963FF200DEC80C;
+			remoteInfo = CleanBoxOffice;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		8F3C4275299A2CCD00EB8CC8 /* boxOfficeSample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = boxOfficeSample.json; sourceTree = "<group>"; };
+		8F3C4278299A2CEE00EB8CC8 /* BoxOfficeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoxOfficeResult.swift; path = ../../../../../../Documents/BoxOfficeResult.swift; sourceTree = "<group>"; };
+		8F3C427E299A717500EB8CC8 /* BoxOfficeResultParsingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoxOfficeResultParsingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F3C4280299A717500EB8CC8 /* BoxOfficeResultParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeResultParsingTests.swift; sourceTree = "<group>"; };
 		8FAC904B29963FF200DEC80C /* CleanBoxOffice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanBoxOffice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FAC904E29963FF200DEC80C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FAC905029963FF200DEC80C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -25,6 +42,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8F3C427B299A717500EB8CC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8FAC904829963FF200DEC80C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -35,10 +59,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F3C4273299A2C3200EB8CC8 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				8FAC904E29963FF200DEC80C /* AppDelegate.swift */,
+				8FAC905029963FF200DEC80C /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		8F3C4274299A2C8000EB8CC8 /* Resorces */ = {
+			isa = PBXGroup;
+			children = (
+				8F3C4275299A2CCD00EB8CC8 /* boxOfficeSample.json */,
+				8FAC905729963FF300DEC80C /* Assets.xcassets */,
+				8FAC905929963FF300DEC80C /* LaunchScreen.storyboard */,
+			);
+			path = Resorces;
+			sourceTree = "<group>";
+		};
+		8F3C4277299A2CD400EB8CC8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8F3C4278299A2CEE00EB8CC8 /* BoxOfficeResult.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8F3C427F299A717500EB8CC8 /* BoxOfficeResultParsingTests */ = {
+			isa = PBXGroup;
+			children = (
+				8F3C4280299A717500EB8CC8 /* BoxOfficeResultParsingTests.swift */,
+			);
+			path = BoxOfficeResultParsingTests;
+			sourceTree = "<group>";
+		};
 		8FAC904229963FF200DEC80C = {
 			isa = PBXGroup;
 			children = (
 				8FAC904D29963FF200DEC80C /* CleanBoxOffice */,
+				8F3C427F299A717500EB8CC8 /* BoxOfficeResultParsingTests */,
 				8FAC904C29963FF200DEC80C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				8FAC904B29963FF200DEC80C /* CleanBoxOffice.app */,
+				8F3C427E299A717500EB8CC8 /* BoxOfficeResultParsingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,11 +115,10 @@
 		8FAC904D29963FF200DEC80C /* CleanBoxOffice */ = {
 			isa = PBXGroup;
 			children = (
-				8FAC904E29963FF200DEC80C /* AppDelegate.swift */,
-				8FAC905029963FF200DEC80C /* SceneDelegate.swift */,
+				8F3C4277299A2CD400EB8CC8 /* Model */,
+				8F3C4273299A2C3200EB8CC8 /* Application */,
 				8FAC905229963FF200DEC80C /* ViewController.swift */,
-				8FAC905729963FF300DEC80C /* Assets.xcassets */,
-				8FAC905929963FF300DEC80C /* LaunchScreen.storyboard */,
+				8F3C4274299A2C8000EB8CC8 /* Resorces */,
 				8FAC905C29963FF300DEC80C /* Info.plist */,
 			);
 			path = CleanBoxOffice;
@@ -67,6 +127,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8F3C427D299A717500EB8CC8 /* BoxOfficeResultParsingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F3C4284299A717500EB8CC8 /* Build configuration list for PBXNativeTarget "BoxOfficeResultParsingTests" */;
+			buildPhases = (
+				8F3C427A299A717500EB8CC8 /* Sources */,
+				8F3C427B299A717500EB8CC8 /* Frameworks */,
+				8F3C427C299A717500EB8CC8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F3C4283299A717500EB8CC8 /* PBXTargetDependency */,
+			);
+			name = BoxOfficeResultParsingTests;
+			productName = BoxOfficeResultParsingTests;
+			productReference = 8F3C427E299A717500EB8CC8 /* BoxOfficeResultParsingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8FAC904A29963FF200DEC80C /* CleanBoxOffice */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8FAC905F29963FF300DEC80C /* Build configuration list for PBXNativeTarget "CleanBoxOffice" */;
@@ -94,6 +172,10 @@
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1410;
 				TargetAttributes = {
+					8F3C427D299A717500EB8CC8 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 8FAC904A29963FF200DEC80C;
+					};
 					8FAC904A29963FF200DEC80C = {
 						CreatedOnToolsVersion = 14.1;
 					};
@@ -113,16 +195,25 @@
 			projectRoot = "";
 			targets = (
 				8FAC904A29963FF200DEC80C /* CleanBoxOffice */,
+				8F3C427D299A717500EB8CC8 /* BoxOfficeResultParsingTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8F3C427C299A717500EB8CC8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8FAC904929963FF200DEC80C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8FAC905B29963FF300DEC80C /* LaunchScreen.storyboard in Resources */,
+				8F3C4276299A2CCD00EB8CC8 /* boxOfficeSample.json in Resources */,
 				8FAC905829963FF300DEC80C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,10 +221,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8F3C427A299A717500EB8CC8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F3C4281299A717500EB8CC8 /* BoxOfficeResultParsingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8FAC904729963FF200DEC80C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F3C4279299A2CEE00EB8CC8 /* BoxOfficeResult.swift in Sources */,
 				8FAC905329963FF200DEC80C /* ViewController.swift in Sources */,
 				8FAC904F29963FF200DEC80C /* AppDelegate.swift in Sources */,
 				8FAC905129963FF200DEC80C /* SceneDelegate.swift in Sources */,
@@ -141,6 +241,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F3C4283299A717500EB8CC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FAC904A29963FF200DEC80C /* CleanBoxOffice */;
+			targetProxy = 8F3C4282299A717500EB8CC8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8FAC905929963FF300DEC80C /* LaunchScreen.storyboard */ = {
@@ -154,6 +262,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8F3C4285299A717500EB8CC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QW8FL6CWBT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = unchain.BoxOfficeResultParsingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanBoxOffice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CleanBoxOffice";
+			};
+			name = Debug;
+		};
+		8F3C4286299A717500EB8CC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QW8FL6CWBT;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = unchain.BoxOfficeResultParsingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CleanBoxOffice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CleanBoxOffice";
+			};
+			name = Release;
+		};
 		8FAC905D29963FF300DEC80C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -325,6 +477,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8F3C4284299A717500EB8CC8 /* Build configuration list for PBXNativeTarget "BoxOfficeResultParsingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F3C4285299A717500EB8CC8 /* Debug */,
+				8F3C4286299A717500EB8CC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8FAC904629963FF200DEC80C /* Build configuration list for PBXProject "CleanBoxOffice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
