@@ -12,7 +12,6 @@ import Alamofire
 final class NetworkService {
     static let shared = NetworkService()
     private init() {}
-    let key = "089d79f78e6c30e40cbad50f2cffe433"
     let kobisDaily = KobisDailyBoxOfficeAPIRequest()
 }
 

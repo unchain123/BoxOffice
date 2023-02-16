@@ -10,7 +10,7 @@ import Foundation
 enum URLPath {
     case dailyBoxOfficeList
     case weeklyBoxOfficeList
-    case moviewInfo
+    case movieInfo
 
     var type: String {
         switch self {
@@ -18,7 +18,7 @@ enum URLPath {
             return "/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
         case .weeklyBoxOfficeList:
             return "/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json"
-        case .moviewInfo:
+        case .movieInfo:
             return "/kobisopenapi/webservice/rest/movie/searchMovieInfo.json"
         }
     }

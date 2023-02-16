@@ -22,10 +22,10 @@ final class BoxOfficeResultParsingTests: XCTestCase {
         guard let decodeData = try? JSONDecoder().decode([BoxOfficeList].self, from: data) else { return }
 
         //when
-        let rnum = 1
+        let rnum = "1"
 
         //then
-        XCTAssertEqual(rnum, decodeData.first?.rnum)
+        XCTAssertEqual(rnum, decodeData.first?.rank)
     }
 
     func test_showRange_parsing() {
