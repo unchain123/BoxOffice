@@ -7,8 +7,17 @@
 
 import UIKit
 
+private enum Section {
+    case main
+}
+
 final class BoxOfficeListViewController: UIViewController {
     //MARK: Property
+    private typealias DiffableDateSource = UICollectionViewDiffableDataSource<Section, BoxOfficeResult>
+
+    private var listDataSource: DiffableDateSource?
+    private var snapShot = NSDiffableDataSourceSnapshot<Section, BoxOfficeResult>()
+
     private lazy var boxOfficeListCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createListLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,11 +29,24 @@ final class BoxOfficeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
+        addSubView()
+        setConstraint()
     }
 
     //MARK: Method
+    private func setConstraint() {
+        NSLayoutConstraint.activate([
+            //MARK: CollectionView
+            boxOfficeListCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            boxOfficeListCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            boxOfficeListCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            boxOfficeListCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
 
+    private func addSubView() {
+        view.addSubview(boxOfficeListCollectionView)
+    }
 }
 
 //MARK: UICollectionView Layout
