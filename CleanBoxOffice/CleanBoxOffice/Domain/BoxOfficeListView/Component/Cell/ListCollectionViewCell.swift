@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ListCollectionViewCell: UICollectionViewCell {
+final class ListCollectionViewCell: UICollectionViewListCell {
     //MARK: Properties
     static let reuseIdentifier = "ListIdentifier"
 
@@ -60,8 +60,11 @@ final class ListCollectionViewCell: UICollectionViewCell {
     //MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.addSubview(rankStackView)
+        contentView.addSubview(informationStackView)
         setAddSubView()
         setConstraint()
+        self.accessories = [.disclosureIndicator()]
     }
 
     required init?(coder: NSCoder) {
@@ -70,11 +73,9 @@ final class ListCollectionViewCell: UICollectionViewCell {
 
     //MARK: Method
     private func setAddSubView() {
-        contentView.addSubview(rankStackView)
         rankStackView.addArrangedSubview(rankLabel)
         rankStackView.addArrangedSubview(rankChangeLabel)
 
-        contentView.addSubview(informationStackView)
         informationStackView.addArrangedSubview(movieNameLabel)
         informationStackView.addArrangedSubview(attendanceLabel)
     }
@@ -92,5 +93,12 @@ final class ListCollectionViewCell: UICollectionViewCell {
             informationStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             informationStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+
+    func configureCell() {
+        rankLabel.text = "1"
+        rankChangeLabel.text = "오늘"
+        attendanceLabel.text = "100만명"
+        movieNameLabel.text = "상견니"
     }
 }
