@@ -13,10 +13,10 @@ private enum Section {
 
 final class BoxOfficeListViewController: UIViewController {
     //MARK: Property
-    private typealias DiffableDateSource = UICollectionViewDiffableDataSource<Section, BoxOfficeResult>
+    private typealias DiffableDateSource = UICollectionViewDiffableDataSource<Section, BoxOfficeList>
 
     private var listDataSource: DiffableDateSource?
-    private var snapShot = NSDiffableDataSourceSnapshot<Section, BoxOfficeResult>()
+    private var snapShot = NSDiffableDataSourceSnapshot<Section, BoxOfficeList>()
 
     private lazy var boxOfficeListCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createListLayout())
@@ -25,19 +25,21 @@ final class BoxOfficeListViewController: UIViewController {
         return collectionView
     }()
 
+    private let viewModel = BoxOfficeListViewModel()
+
     //MARK: ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "2023.02.19"
         addSubView()
         setConstraint()
-        snapShot.appendSections([.main])
-        listDataSource?.apply(snapShot, animatingDifferences: false)
-        boxOfficeListCollectionView.register(
+        viewModel.delegate = self
+        self.boxOfficeListCollectionView.register(
             ListCollectionViewCell.self,
             forCellWithReuseIdentifier: ListCollectionViewCell.reuseIdentifier
         )
         listDataSource = configureDataSource()
+        viewModel.viewDidLoad()
     }
 
     //MARK: Method
@@ -81,11 +83,20 @@ extension BoxOfficeListViewController {
 
 //MARK: DiffableDataSource
     private func configureDataSource() -> DiffableDateSource? {
-        let dataSource = DiffableDateSource(collectionView: boxOfficeListCollectionView) { (collectionView, indexPath, itemIdentifier) -> UICollectionViewCell? in
+        let dataSource = DiffableDateSource(collectionView: boxOfficeListCollectionView) { (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: BoxOfficeList) -> UICollectionViewCell? in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.reuseIdentifier, for: indexPath) as? ListCollectionViewCell else { return ListCollectionViewCell() }
-            cell.configureCell()
+            cell.configureCell(product: itemIdentifier)
             return cell
         }
         return dataSource
+    }
+}
+
+//MARK: Delegate
+extension BoxOfficeListViewController: BoxOfficeListDelegate {
+    func applySnapshot(input: [BoxOfficeList]) {
+        snapShot.appendSections([.main])
+        snapShot.appendItems(input, toSection: .main)
+        listDataSource?.apply(snapShot, animatingDifferences: true)
     }
 }

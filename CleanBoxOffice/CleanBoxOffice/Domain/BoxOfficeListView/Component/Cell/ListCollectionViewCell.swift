@@ -9,6 +9,7 @@ import UIKit
 
 final class ListCollectionViewCell: UICollectionViewListCell {
     //MARK: Properties
+    private let viewModel = BoxOfficeListViewModel()
     static let reuseIdentifier = "ListIdentifier"
 
     private let rankLabel: UILabel = {
@@ -95,10 +96,10 @@ final class ListCollectionViewCell: UICollectionViewListCell {
         ])
     }
 
-    func configureCell() {
-        rankLabel.text = "1"
-        rankChangeLabel.text = "오늘"
-        attendanceLabel.text = "100만명"
-        movieNameLabel.text = "상견니"
+    func configureCell(product: BoxOfficeList) {
+            rankLabel.text = product.rank
+            rankChangeLabel.text = product.isNewRanked
+            attendanceLabel.text = product.audienceAttendance
+            movieNameLabel.text = product.movieName
     }
 }
