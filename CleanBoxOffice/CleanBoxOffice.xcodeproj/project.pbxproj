@@ -28,6 +28,7 @@
 		8FAC905829963FF300DEC80C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FAC905729963FF300DEC80C /* Assets.xcassets */; };
 		8FAC905B29963FF300DEC80C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FAC905929963FF300DEC80C /* LaunchScreen.storyboard */; };
 		8FC6CE8229A33BCB005CB6C7 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC6CE8129A33BCB005CB6C7 /* Observable.swift */; };
+		8FC6CE8429A5F88C005CB6C7 /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC6CE8329A5F88C005CB6C7 /* String + Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		8FAC905A29963FF300DEC80C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8FAC905C29963FF300DEC80C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FC6CE8129A33BCB005CB6C7 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		8FC6CE8329A5F88C005CB6C7 /* String + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				8F79E88E299CCC97003093D1 /* Date+Extension.swift */,
+				8FC6CE8329A5F88C005CB6C7 /* String + Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				8FAC904F29963FF200DEC80C /* AppDelegate.swift in Sources */,
 				8F79E8A5299E5B38003093D1 /* MovieDetailAPIRequest.swift in Sources */,
 				8F79E887299CBFFC003093D1 /* APIRequestProtocol.swift in Sources */,
+				8FC6CE8429A5F88C005CB6C7 /* String + Extension.swift in Sources */,
 				8FAC905129963FF200DEC80C /* SceneDelegate.swift in Sources */,
 				8F79E88C299CCB77003093D1 /* KobisDailyBoxOfficeAPIRequest.swift in Sources */,
 			);

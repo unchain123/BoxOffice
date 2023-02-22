@@ -32,7 +32,7 @@ extension BoxOfficeListViewModel: BoxOfficeListViewModelInput {
             .validate(statusCode: 200..<300)
             .responseDecodable(of: BoxOfficeDTO.self) { [weak self] (response) in
                 guard let self = self else { return }
-                self.boxOfficeList.value.append(contentsOf: response.value?.boxOfficeResult.dailyBoxOfficeList ?? [BoxOfficeList(rank: "", movieName: "", openDate: "", audienceAttendance: "", rankIncrease: "", isNewRanked: "", movieCode: "")])
+                self.boxOfficeList.value.append(contentsOf: response.value?.boxOfficeResult.dailyBoxOfficeList ?? [BoxOfficeList(rank: "", movieName: "", openDate: "", audienceAttendance: "", rankIncrease: "", isNewRanked: "", movieCode: "", todayAttendance: "")])
                 self.delegate?.applySnapshot(input: self.boxOfficeList.value)
             }
     }

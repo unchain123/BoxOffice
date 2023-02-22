@@ -116,7 +116,8 @@ final class ListCollectionViewCell: UICollectionViewListCell {
     func configureCell(product: BoxOfficeList) {
             rankLabel.text = product.rank
             rankChangeLabel.text = product.isNewRanked
-            attendanceLabel.text = product.audienceAttendance
-            movieNameLabel.text = product.movieName
+            attendanceLabel.text = "오늘 \(product.todayAttendance?.decimalFormatter() ?? "")" +
+                                    " / 총 \(product.audienceAttendance?.decimalFormatter() ?? "")"
+            movieNameLabel.text = product.movieName 
     }
 }
