@@ -113,9 +113,32 @@ final class ListCollectionViewCell: UICollectionViewListCell {
         ])
     }
 
+    private func showRank(product: BoxOfficeList) {
+        guard let rank = product.isNewRanked else { return }
+        if rank == "NEW" {
+            rankChangeLabel.text = "신작"
+            rankChangeLabel.textColor = .red
+        } else {
+            showRankIncreases(product: product)
+        }
+    }
+
+    private func showRankIncreases(product: BoxOfficeList) {
+        guard let increases = Int(product.rankIncrease ?? "") else { return }
+        if increases >  0 {
+            rankChangeLabel.text = "▲\(increases)"
+            rankChangeLabel.asColor(targetString: "▲", color: .red)
+        } else if increases == 0 {
+            rankChangeLabel.text = "-"
+        } else if increases < 0 {
+            rankChangeLabel.text = "▼\(increases * -1)"
+            rankChangeLabel.asColor(targetString: "▼", color: .blue)
+        }
+    }
+
     func configureCell(product: BoxOfficeList) {
             rankLabel.text = product.rank
-            rankChangeLabel.text = product.isNewRanked
+            showRank(product: product)
             attendanceLabel.text = "오늘 \(product.todayAttendance?.decimalFormatter() ?? "")" +
                                     " / 총 \(product.audienceAttendance?.decimalFormatter() ?? "")"
             movieNameLabel.text = product.movieName 
