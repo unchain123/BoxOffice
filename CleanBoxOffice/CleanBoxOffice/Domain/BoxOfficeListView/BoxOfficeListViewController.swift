@@ -30,7 +30,9 @@ final class BoxOfficeListViewController: UIViewController {
     //MARK: ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "2023.02.19"
+        navigationItem.title = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.boxOfficeDate ?? ""
+
+        viewModel.viewDidLoad()
         addSubView()
         setConstraint()
         viewModel.delegate = self
@@ -39,7 +41,6 @@ final class BoxOfficeListViewController: UIViewController {
             forCellWithReuseIdentifier: ListCollectionViewCell.reuseIdentifier
         )
         listDataSource = configureDataSource()
-        viewModel.viewDidLoad()
     }
 
     //MARK: Method
@@ -76,6 +77,7 @@ extension BoxOfficeListViewController {
                                                       trailing: 5)
 
         let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 15
         let layout = UICollectionViewCompositionalLayout(section: section)
 
         return layout

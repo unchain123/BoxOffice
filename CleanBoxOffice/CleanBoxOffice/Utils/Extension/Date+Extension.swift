@@ -18,6 +18,16 @@ extension Date {
         return formattedDate
     }
 
+    var boxOfficeDate: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        formatter.dateFormat = "yyyy-MM-dd"
+        let formattedDate = formatter.string(from: self)
+
+        return formattedDate
+    }
+
     var year: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_kr")

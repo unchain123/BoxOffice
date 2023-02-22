@@ -30,6 +30,7 @@ final class ListCollectionViewCell: UICollectionViewListCell {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title2)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         return label
     }()
 
@@ -37,6 +38,8 @@ final class ListCollectionViewCell: UICollectionViewListCell {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title3)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+
         return label
     }()
 
@@ -46,23 +49,35 @@ final class ListCollectionViewCell: UICollectionViewListCell {
         stackView.distribution = .fill
         stackView.alignment = .center
         stackView.axis = .vertical
+        stackView.spacing = 0
+        stackView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return stackView
     }()
 
     private let informationStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fill
+        stackView.distribution = .fillEqually
         stackView.alignment = .leading
         stackView.axis = .vertical
+        stackView.spacing = 0
+        stackView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        return stackView
+    }()
+
+    private let totalStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
     //MARK: init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(rankStackView)
-        contentView.addSubview(informationStackView)
+        contentView.addSubview(totalStackView)
         setAddSubView()
         setConstraint()
         self.accessories = [.disclosureIndicator()]
@@ -79,20 +94,22 @@ final class ListCollectionViewCell: UICollectionViewListCell {
 
         informationStackView.addArrangedSubview(movieNameLabel)
         informationStackView.addArrangedSubview(attendanceLabel)
+
+        totalStackView.addArrangedSubview(rankStackView)
+        totalStackView.addArrangedSubview(informationStackView)
     }
 
     private func setConstraint() {
         NSLayoutConstraint.activate([
             //MARK: rankStackView
-            rankStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            rankStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            rankStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            totalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            totalStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            totalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            totalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 
-            //MARK: informationStackView
-            informationStackView.leadingAnchor.constraint(equalTo: rankStackView.trailingAnchor),
-            informationStackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            informationStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            informationStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            rankStackView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15),
+
+            informationStackView.leadingAnchor.constraint(equalTo: rankStackView.trailingAnchor, constant: 30)
         ])
     }
 
