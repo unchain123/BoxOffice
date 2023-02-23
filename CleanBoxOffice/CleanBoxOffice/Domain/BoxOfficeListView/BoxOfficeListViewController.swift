@@ -22,7 +22,14 @@ final class BoxOfficeListViewController: UIViewController {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createListLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.refreshControl = refreshControl
         return collectionView
+    }()
+
+    private lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refreshCollectionView), for: .valueChanged)
+        return refresh
     }()
 
     private let viewModel = BoxOfficeListViewModel()
@@ -30,12 +37,17 @@ final class BoxOfficeListViewController: UIViewController {
     //MARK: ViewLifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.boxOfficeDate ?? ""
-
+        setUpViewController()
         viewModel.viewDidLoad()
+        viewModel.delegate = self
+    }
+
+    //MARK: Method
+
+    private func setUpViewController() {
+        navigationItem.title = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.boxOfficeDate ?? ""
         addSubView()
         setConstraint()
-        viewModel.delegate = self
         self.boxOfficeListCollectionView.register(
             ListCollectionViewCell.self,
             forCellWithReuseIdentifier: ListCollectionViewCell.reuseIdentifier
@@ -43,7 +55,6 @@ final class BoxOfficeListViewController: UIViewController {
         listDataSource = configureDataSource()
     }
 
-    //MARK: Method
     private func setConstraint() {
         NSLayoutConstraint.activate([
             //MARK: CollectionView
@@ -56,6 +67,15 @@ final class BoxOfficeListViewController: UIViewController {
 
     private func addSubView() {
         view.addSubview(boxOfficeListCollectionView)
+    }
+
+    @objc private func refreshCollectionView() {
+        boxOfficeListCollectionView.refreshControl?.beginRefreshing()
+        DispatchQueue.main.async {
+            self.snapShot.reloadSections([.main])
+            self.viewModel.viewDidLoad()
+            self.boxOfficeListCollectionView.refreshControl?.endRefreshing()
+        }
     }
 }
 
@@ -94,9 +114,11 @@ extension BoxOfficeListViewController {
     }
 }
 
-//MARK: Delegate
+//MARK: BoxOfficeListDelegate
 extension BoxOfficeListViewController: BoxOfficeListDelegate {
     func applySnapshot(input: [BoxOfficeList]) {
+        guard snapShot.numberOfSections == 0 else { return }
+
         snapShot.appendSections([.main])
         snapShot.appendItems(input, toSection: .main)
         listDataSource?.apply(snapShot, animatingDifferences: true)
