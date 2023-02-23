@@ -141,6 +141,6 @@ final class ListCollectionViewCell: UICollectionViewListCell {
             showRank(product: product)
             attendanceLabel.text = "오늘 \(product.todayAttendance?.decimalFormatter() ?? "")" +
                                     " / 총 \(product.audienceAttendance?.decimalFormatter() ?? "")"
-            movieNameLabel.text = product.movieName 
+            movieNameLabel.text = product.movieName
     }
 }

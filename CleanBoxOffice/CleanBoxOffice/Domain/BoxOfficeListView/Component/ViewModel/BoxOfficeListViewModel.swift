@@ -13,6 +13,7 @@ protocol BoxOfficeListViewModelInput {
 
 protocol BoxOfficeListViewModelOutput {
     var boxOfficeList: Observable<[BoxOfficeList]> { get }
+    var boxOfficeDate: String { get }
 }
 
 protocol BoxOfficeListDelegate: AnyObject {
@@ -20,10 +21,11 @@ protocol BoxOfficeListDelegate: AnyObject {
 }
 
 final class BoxOfficeListViewModel: BoxOfficeListViewModelOutput {
+
     //MARK: OutPut
     var boxOfficeList: Observable<[BoxOfficeList]> = Observable([])
     weak var delegate: BoxOfficeListDelegate?
-
+    var boxOfficeDate: String = ""
 }
 
 extension BoxOfficeListViewModel: BoxOfficeListViewModelInput {

@@ -32,6 +32,18 @@ final class BoxOfficeListViewController: UIViewController {
         return refresh
     }()
 
+    private let datePickButton: UIButton = {
+        let button = UIButton()
+        var attString = AttributedString("날짜선택")
+        attString.font = .systemFont(ofSize: 16, weight: .bold)
+
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = attString
+        button.configuration = configuration
+        button.addTarget(BoxOfficeListViewController.self, action: #selector(openCalendar), for: .valueChanged)
+        return button
+    }()
+
     private let viewModel = BoxOfficeListViewModel()
 
     //MARK: ViewLifeCycle
@@ -45,6 +57,7 @@ final class BoxOfficeListViewController: UIViewController {
     //MARK: Method
 
     private func setUpViewController() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: datePickButton)
         navigationItem.title = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.boxOfficeDate ?? ""
         addSubView()
         setConstraint()
@@ -76,6 +89,10 @@ final class BoxOfficeListViewController: UIViewController {
             self.viewModel.viewDidLoad()
             self.boxOfficeListCollectionView.refreshControl?.endRefreshing()
         }
+    }
+
+    @objc private func openCalendar() {
+
     }
 }
 
