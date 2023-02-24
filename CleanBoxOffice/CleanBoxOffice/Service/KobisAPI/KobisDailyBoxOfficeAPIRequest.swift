@@ -8,6 +8,12 @@
 import Foundation
 
 struct KobisDailyBoxOfficeAPIRequest: APIRequestProtocol {
+    var queryItems: [String : String]? = [
+        "key": "089d79f78e6c30e40cbad50f2cffe433",
+        "targetDt": Calendar.current.date(byAdding: .day, value: -1, to: Date())?.today ?? "",
+        "itemPerPage": "10"
+    ]
+
     var host: URLHost {
         .kobis
     }
@@ -18,14 +24,6 @@ struct KobisDailyBoxOfficeAPIRequest: APIRequestProtocol {
 
     var httpMethod: HTTPMethod {
         .get
-    }
-
-    var queryItems: [String : String]? {
-        [
-            "key": "089d79f78e6c30e40cbad50f2cffe433",
-            "targetDt": Calendar.current.date(byAdding: .day, value: -1, to: Date())?.now ?? "",
-            "itemPerPage": "10"
-        ]
     }
 
     var header: [String : String]?

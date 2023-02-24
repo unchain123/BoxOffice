@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    var now: String {
+    var today: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_kr")
         formatter.timeZone = TimeZone(abbreviation: "KST")
@@ -37,5 +37,4 @@ extension Date {
 
         return formattedDate
     }
-
 }

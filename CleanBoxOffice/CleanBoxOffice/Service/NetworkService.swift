@@ -12,12 +12,13 @@ import Alamofire
 final class NetworkService {
     static let shared = NetworkService()
     private init() {}
-    let kobisDaily = KobisDailyBoxOfficeAPIRequest()
+    private var kobisDaily = KobisDailyBoxOfficeAPIRequest()
 }
 
 extension NetworkService {
-    func fetch() -> DataRequest {
+    func fetch(targetDate: String) -> DataRequest {
         guard let url = URL(string: kobisDaily.url) else { return AF.request("") }
+        kobisDaily.queryItems?["targetDt"] = targetDate
         return AF.request(url, method: .get, parameters: kobisDaily.queryItems)
     }
 }

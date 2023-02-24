@@ -10,7 +10,7 @@ import Foundation
 protocol APIRequestProtocol {
     var host: URLHost { get }
     var path: URLPath { get }
-    var queryItems: [String: String]? { get }
+    var queryItems: [String: String]? { get set }
     var httpMethod: HTTPMethod { get }
     var header: [String : String]? { get }
     var body: Data? { get }

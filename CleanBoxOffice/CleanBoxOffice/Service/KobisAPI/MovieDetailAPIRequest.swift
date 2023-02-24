@@ -8,6 +8,8 @@
 import Foundation
 
 struct MovieDetailAPIRequest: APIRequestProtocol {
+    var queryItems: [String : String]?
+    
 
     let movieCode: String
 
@@ -19,12 +21,12 @@ struct MovieDetailAPIRequest: APIRequestProtocol {
         .movieInfo
     }
 
-    var queryItems: [String : String]? {
-        [
-            "key" : "089d79f78e6c30e40cbad50f2cffe433",
-            "movieCd" : movieCode
-        ]
-    }
+//    var queryItems: [String : String]? {
+//        [
+//            "key" : "089d79f78e6c30e40cbad50f2cffe433",
+//            "movieCd" : movieCode
+//        ]
+//    }
 
     var httpMethod: HTTPMethod {
         .get

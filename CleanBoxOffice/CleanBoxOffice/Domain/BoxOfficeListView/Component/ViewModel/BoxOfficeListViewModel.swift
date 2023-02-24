@@ -25,12 +25,12 @@ final class BoxOfficeListViewModel: BoxOfficeListViewModelOutput {
     //MARK: OutPut
     var boxOfficeList: Observable<[BoxOfficeList]> = Observable([])
     weak var delegate: BoxOfficeListDelegate?
-    var boxOfficeDate: String = ""
+    var boxOfficeDate: String = "20230223"
 }
 
 extension BoxOfficeListViewModel: BoxOfficeListViewModelInput {
     func viewDidLoad() {
-        NetworkService.shared.fetch()
+        NetworkService.shared.fetch(targetDate: boxOfficeDate)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: BoxOfficeDTO.self) { [weak self] (response) in
                 guard let self = self else { return }
