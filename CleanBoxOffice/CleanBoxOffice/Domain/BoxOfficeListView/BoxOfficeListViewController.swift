@@ -32,7 +32,7 @@ final class BoxOfficeListViewController: UIViewController {
         return refresh
     }()
 
-    private let datePickButton: UIButton = {
+    private lazy var datePickButton: UIButton = {
         let button = UIButton()
         var attString = AttributedString("날짜선택")
         attString.font = .systemFont(ofSize: 16, weight: .bold)
@@ -40,7 +40,7 @@ final class BoxOfficeListViewController: UIViewController {
         var configuration = UIButton.Configuration.plain()
         configuration.attributedTitle = attString
         button.configuration = configuration
-        button.addTarget(BoxOfficeListViewController.self, action: #selector(openCalendar), for: .valueChanged)
+        button.addTarget(self, action: #selector(openCalendar), for: .touchUpInside)
         return button
     }()
 
@@ -92,7 +92,10 @@ final class BoxOfficeListViewController: UIViewController {
     }
 
     @objc private func openCalendar() {
+        let calendar = CalendarViewController()
+        calendar.modalPresentationStyle = UIModalPresentationStyle.pageSheet
 
+        self.present(calendar, animated: true)
     }
 }
 
