@@ -8,34 +8,37 @@
 import Foundation
 
 protocol BoxOfficeListViewModelInput {
-    func viewDidLoad()
+    func viewDidLoad(targetDate: String)
 }
 
 protocol BoxOfficeListViewModelOutput {
     var boxOfficeList: Observable<[BoxOfficeList]> { get }
-    var boxOfficeDate: String { get }
 }
 
 protocol BoxOfficeListDelegate: AnyObject {
     func applySnapshot(input: [BoxOfficeList])
 }
 
+protocol CalendarDelegate: AnyObject {
+    func chooseDate(targetDate: String)
+}
+
 final class BoxOfficeListViewModel: BoxOfficeListViewModelOutput {
 
     //MARK: OutPut
     var boxOfficeList: Observable<[BoxOfficeList]> = Observable([])
-    weak var delegate: BoxOfficeListDelegate?
-    var boxOfficeDate: String = "20230223"
+    weak var boxOfficeDelegate: BoxOfficeListDelegate?
+    weak var calendarDelegate: CalendarDelegate?
 }
 
 extension BoxOfficeListViewModel: BoxOfficeListViewModelInput {
-    func viewDidLoad() {
-        NetworkService.shared.fetch(targetDate: boxOfficeDate)
+    func viewDidLoad(targetDate: String = Calendar.current.date(byAdding: .day, value: -1, to: Date())?.today ?? "") {
+        NetworkService.shared.fetch(targetDate: targetDate)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: BoxOfficeDTO.self) { [weak self] (response) in
                 guard let self = self else { return }
                 self.boxOfficeList.value.append(contentsOf: response.value?.boxOfficeResult.dailyBoxOfficeList ?? [BoxOfficeList(rank: "", movieName: "", openDate: "", audienceAttendance: "", rankIncrease: "", isNewRanked: "", movieCode: "", todayAttendance: "")])
-                self.delegate?.applySnapshot(input: self.boxOfficeList.value)
+                self.boxOfficeDelegate?.applySnapshot(input: self.boxOfficeList.value)
             }
     }
 }

@@ -8,10 +8,11 @@
 import Foundation
 
 protocol CalendarViewModelOutput {
-    
+    var targetDate: Observable<String> { get }
 }
 
+final class CalendarViewModel : CalendarViewModelOutput {
 
-final class CalendarViewModel {
-
+    //MARK: Output
+    var targetDate: Observable<String> = Observable("")
 }

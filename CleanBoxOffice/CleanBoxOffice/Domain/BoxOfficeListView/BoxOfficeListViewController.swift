@@ -16,7 +16,6 @@ final class BoxOfficeListViewController: UIViewController {
     private typealias DiffableDateSource = UICollectionViewDiffableDataSource<Section, BoxOfficeList>
 
     private var listDataSource: DiffableDateSource?
-    private var snapShot = NSDiffableDataSourceSnapshot<Section, BoxOfficeList>()
 
     private lazy var boxOfficeListCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createListLayout())
@@ -50,8 +49,9 @@ final class BoxOfficeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViewController()
-        viewModel.viewDidLoad()
-        viewModel.delegate = self
+        viewModel.viewDidLoad(targetDate: "20230224")
+        viewModel.boxOfficeDelegate = self
+        viewModel.calendarDelegate = self
     }
 
     //MARK: Method
@@ -85,7 +85,6 @@ final class BoxOfficeListViewController: UIViewController {
     @objc private func refreshCollectionView() {
         boxOfficeListCollectionView.refreshControl?.beginRefreshing()
         DispatchQueue.main.async {
-            self.snapShot.reloadSections([.main])
             self.viewModel.viewDidLoad()
             self.boxOfficeListCollectionView.refreshControl?.endRefreshing()
         }
@@ -94,7 +93,7 @@ final class BoxOfficeListViewController: UIViewController {
     @objc private func openCalendar() {
         let calendar = CalendarViewController()
         calendar.modalPresentationStyle = UIModalPresentationStyle.pageSheet
-
+        calendar.calendarDelegate = self
         self.present(calendar, animated: true)
     }
 }
@@ -137,10 +136,21 @@ extension BoxOfficeListViewController {
 //MARK: BoxOfficeListDelegate
 extension BoxOfficeListViewController: BoxOfficeListDelegate {
     func applySnapshot(input: [BoxOfficeList]) {
-        guard snapShot.numberOfSections == 0 else { return }
-
+        var snapShot = NSDiffableDataSourceSnapshot<Section, BoxOfficeList>()
+        for i in input {
+           print(i.hashValue)
+        }
         snapShot.appendSections([.main])
         snapShot.appendItems(input, toSection: .main)
         listDataSource?.apply(snapShot, animatingDifferences: true)
+
+    }
+}
+
+//MARK: CalendarDelegate
+extension BoxOfficeListViewController: CalendarDelegate {
+    func chooseDate(targetDate: String) {
+        navigationItem.title = targetDate
+        viewModel.viewDidLoad(targetDate: targetDate)
     }
 }

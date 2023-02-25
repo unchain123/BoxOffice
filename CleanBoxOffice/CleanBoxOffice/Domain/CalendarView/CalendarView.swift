@@ -7,14 +7,9 @@
 
 import UIKit
 
-final class CalendarViewController: UIViewController, UICalendarViewDelegate, UICalendarSelectionSingleDateDelegate {
-    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
-        print(dateComponents?.date?.today)
-    }
-
-    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-        return nil
-    }
+final class CalendarViewController: UIViewController {
+    private let viewModel = CalendarViewModel()
+    weak var calendarDelegate: CalendarDelegate?
 
     private let calendarView: UICalendarView = {
         let calendarView = UICalendarView()
@@ -28,10 +23,25 @@ final class CalendarViewController: UIViewController, UICalendarViewDelegate, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view = calendarView
         calendarView.delegate = self
         let dateSelection = UICalendarSelectionSingleDate(delegate: self)
         calendarView.selectionBehavior = dateSelection
+    }
+}
+
+//MARK: extension UICalendarViewDelegate
+extension CalendarViewController: UICalendarViewDelegate {
+    func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
+        return nil
+    }
+}
+
+//MARK: extension UICalendarSelectionSingleDateDelegate
+extension CalendarViewController: UICalendarSelectionSingleDateDelegate {
+    func dateSelection(_ selection: UICalendarSelectionSingleDate, didSelectDate dateComponents: DateComponents?) {
+        viewModel.targetDate.value = dateComponents?.date?.today ?? ""
+        calendarDelegate?.chooseDate(targetDate: dateComponents?.date?.today ?? "")
+        self.dismiss(animated: true)
     }
 }
