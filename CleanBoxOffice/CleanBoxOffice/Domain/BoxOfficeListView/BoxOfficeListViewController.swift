@@ -137,13 +137,10 @@ extension BoxOfficeListViewController {
 extension BoxOfficeListViewController: BoxOfficeListDelegate {
     func applySnapshot(input: [BoxOfficeList]) {
         var snapShot = NSDiffableDataSourceSnapshot<Section, BoxOfficeList>()
-        for i in input {
-           print(i.hashValue)
-        }
-        snapShot.appendSections([.main])
-        snapShot.appendItems(input, toSection: .main)
-        listDataSource?.apply(snapShot, animatingDifferences: true)
+            snapShot.appendSections([.main])
+            snapShot.appendItems(input, toSection: .main)
 
+        listDataSource?.apply(snapShot, animatingDifferences: true)
     }
 }
 
