@@ -49,7 +49,7 @@ final class BoxOfficeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViewController()
-        viewModel.viewDidLoad(targetDate: "20230224")
+        viewModel.viewDidLoad(targetDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())?.today ?? "")
         viewModel.boxOfficeDelegate = self
         viewModel.calendarDelegate = self
     }
