@@ -8,6 +8,7 @@
 import UIKit
 
 final class CalendarViewController: UIViewController {
+    //MARK: Properties
     private let viewModel = CalendarViewModel()
     weak var calendarDelegate: CalendarDelegate?
 

@@ -12,7 +12,7 @@ private enum Section {
 }
 
 final class BoxOfficeListViewController: UIViewController {
-    //MARK: Property
+    //MARK: Properties
     private typealias DiffableDateSource = UICollectionViewDiffableDataSource<Section, BoxOfficeList>
 
     private var listDataSource: DiffableDateSource?
