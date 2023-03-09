@@ -9,9 +9,17 @@ import UIKit
 
 final class DetailViewController: UIViewController {
 //MARK: Properties
+    private let detailScrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.isDirectionalLockEnabled = true
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
+
     private let posterView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "plus")
+        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
 
@@ -19,7 +27,7 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textAlignment = .center
-
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return label
     }()
 
@@ -33,6 +41,7 @@ final class DetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.spacing = 10
         return stackView
     }()
 
@@ -40,6 +49,7 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textAlignment = .center
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         return label
     }()
@@ -54,6 +64,7 @@ final class DetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.spacing = 10
         return stackView
     }()
 
@@ -61,6 +72,7 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textAlignment = .center
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         return label
     }()
@@ -75,6 +87,7 @@ final class DetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.spacing = 10
         return stackView
     }()
 
@@ -82,6 +95,7 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textAlignment = .center
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         return label
     }()
@@ -96,6 +110,7 @@ final class DetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.spacing = 10
         return stackView
     }()
 
@@ -103,6 +118,7 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textAlignment = .center
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         return label
     }()
@@ -117,6 +133,7 @@ final class DetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.spacing = 10
         return stackView
     }()
 
@@ -124,6 +141,7 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textAlignment = .center
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         return label
     }()
@@ -138,6 +156,7 @@ final class DetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.spacing = 10
         return stackView
     }()
 
@@ -145,6 +164,7 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textAlignment = .center
+        label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 
         return label
     }()
@@ -159,6 +179,7 @@ final class DetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.spacing = 10
         return stackView
     }()
 
@@ -166,13 +187,13 @@ final class DetailViewController: UIViewController {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .bold)
         label.textAlignment = .center
-
+        label.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         return label
     }()
 
     private let actorsDetail: UILabel = {
         let label = UILabel()
-
+        label.numberOfLines = 0
         return label
     }()
 
@@ -180,6 +201,8 @@ final class DetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
@@ -187,20 +210,27 @@ final class DetailViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
     //MARK: ViewLifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         setAddSubView()
+        setConstraints()
     }
 
     //MARK: Method
 
     private func setAddSubView() {
-        view.addSubview(posterView)
-        view.addSubview(detailTotalView)
+        view.addSubview(detailScrollView)
+
+        detailScrollView.addSubview(posterView)
+        detailScrollView.addSubview(detailTotalView)
+        detailScrollView.addSubview(actorStackView)
 
         //MARK: detailTotalView
         detailTotalView.addArrangedSubview(directorStackView)
@@ -237,6 +267,27 @@ final class DetailViewController: UIViewController {
     }
 
     private func setConstraints() {
+        NSLayoutConstraint.activate([
+            //MARK: detailScrollView
+            detailScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            detailScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            detailScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            detailScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
+            posterView.topAnchor.constraint(equalTo: detailScrollView.topAnchor),
+            posterView.leadingAnchor.constraint(equalTo: detailScrollView.leadingAnchor, constant: 10),
+            posterView.trailingAnchor.constraint(equalTo: detailScrollView.trailingAnchor, constant: -10),
+            posterView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+            posterView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+
+            detailTotalView.topAnchor.constraint(equalTo: posterView.bottomAnchor, constant: 5),
+            detailTotalView.leadingAnchor.constraint(equalTo: detailScrollView.leadingAnchor, constant: 10),
+            detailTotalView.trailingAnchor.constraint(equalTo: detailScrollView.trailingAnchor, constant: -10),
+
+            actorStackView.topAnchor.constraint(equalTo: detailTotalView.bottomAnchor, constant: 5),
+            actorStackView.bottomAnchor.constraint(equalTo: detailScrollView.bottomAnchor),
+            actorStackView.leadingAnchor.constraint(equalTo: detailScrollView.leadingAnchor, constant: 20),
+            actorStackView.trailingAnchor.constraint(equalTo: detailScrollView.trailingAnchor, constant: -10)
+        ])
     }
 }

@@ -52,6 +52,7 @@ final class BoxOfficeListViewController: UIViewController {
         viewModel.viewDidLoad(targetDate: Calendar.current.date(byAdding: .day, value: -1, to: Date())?.today ?? "")
         viewModel.boxOfficeDelegate = self
         viewModel.calendarDelegate = self
+        boxOfficeListCollectionView.delegate = self
     }
 
     //MARK: Method
@@ -149,5 +150,14 @@ extension BoxOfficeListViewController: CalendarDelegate {
     func chooseDate(targetDate: String) {
         navigationItem.title = targetDate
         viewModel.viewDidLoad(targetDate: targetDate)
+    }
+}
+
+extension BoxOfficeListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let detailViewController = DetailViewController()
+
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
